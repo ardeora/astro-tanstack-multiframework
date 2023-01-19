@@ -1,0 +1,57 @@
+---
+// Style Imports
+import '../styles/global.css';
+
+// Component Imports
+// For JSX components, all the common ways of exporting (under a namespace, specific export, default export etc) are supported!
+import * as react from '../components/ReactCounter';
+import { PreactCounter } from '../components/PreactCounter';
+import SolidCounter from '../components/SolidCounter';
+
+import VueCounter from '../components/VueCounter.vue';
+import SvelteCounter from '../components/SvelteCounter.svelte';
+import SvelteProvider from '../components/Svelte.svelte';
+
+// Full Astro Component Syntax:
+// https://docs.astro.build/core-concepts/astro-components/
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	</head>
+	<body>
+		<main class="h-screen flex flex-col justify-between py-16 relative">
+
+			<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+				<h1 class="text-2xl font-bold text-black/60">Astro + TanStack Query</h1>
+				<div class="relative w-[264px] mt-2 rounded-xl aspect-square bg-red-400 overflow-hidden flex justify-center items-center">
+					<div class="bloop"></div>
+				</div>
+			</div>
+
+			<div class="flex justify-between px-16">
+				<react.ReactCounter client:only="react">
+					<h1>Hello from React!</h1>
+				</react.ReactCounter>
+
+				
+				<SvelteProvider client:only="svelte">
+				</SvelteProvider>
+			</div>
+
+			<div class="flex justify-between px-16">
+				<VueCounter client:only="vue">
+					<h1>Hello from Vue!</h1>
+				</VueCounter>
+
+				<SolidCounter client:only="solid">
+					<h1>Hello from Solid!</h1>
+				</SolidCounter>
+			</div>
+		</main>
+	</body>
+</html>

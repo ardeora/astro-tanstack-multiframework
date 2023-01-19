@@ -1,0 +1,28 @@
+html,
+body {
+  font-family: system-ui;
+  margin: 0;
+}
+
+body {
+}
+
+.counter {
+  display: grid;
+  font-size: 2em;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  place-items: center;
+}
+
+.counter-message {
+  text-align: center;
+}
+
+.bloop {
+  background-image: url("/tanos.png");
+  min-height: 100%;
+  min-width: 100%;
+  background-size: cover;
+  background-position: 65% 75%;
+}
