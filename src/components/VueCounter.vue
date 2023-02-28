@@ -80,7 +80,7 @@ export default {
         const res = await fetch(`https://dummyjson.com/posts/${count.value}`);
         return res.json();
       },
-      keepPreviousData: true,
+      placeholderData: (prev) => prev,
       select(data) {
         return {
           ...data,

@@ -14,7 +14,7 @@ A counter written with Svelte
       );
       return res.json();
     },
-    keepPreviousData: true,
+    placeholderData: (prev) => prev,
 		select(data) {
         return {
           ...data,

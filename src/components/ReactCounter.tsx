@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, FC } from "react";
 import { client, counter } from "../utils";
 import { QueryClientProvider, useQuery } from "@tanstack/react-query";
 import { useStore } from "@nanostores/react";
@@ -12,7 +12,7 @@ export function ReactCounter() {
 }
 
 /** A counter written with React */
-export function Counter() {
+export const Counter: FC = () => {
   const count = useStore(counter);
   const add = () => counter.set(counter.get() + 1);
   const subtract = () => counter.set(counter.get() - 1);
@@ -23,7 +23,7 @@ export function Counter() {
       const res = await fetch(`https://dummyjson.com/posts/${count}`);
       return res.json();
     },
-    keepPreviousData: true,
+    placeholderData: (prev) => prev,
     select(data) {
       return {
         ...data,
@@ -78,4 +78,4 @@ export function Counter() {
       </div>
     </div>
   );
-}
+};

@@ -19,20 +19,21 @@ export function Counter() {
   const add = () => counter.set(counter.get() + 1);
   const subtract = () => counter.set(counter.get() - 1);
 
-  const query = createQuery({
-    queryKey: () => ["counter", count()],
+  const query = createQuery(() => ({
+    queryKey: ["counter", count()],
     queryFn: async () => {
+      await new Promise((r) => setTimeout(r, 500));
       const res = await fetch(`https://dummyjson.com/posts/${count()}`);
       return res.json();
     },
-    keepPreviousData: true,
+    placeholderData: (prev) => prev,
     select(data) {
       return {
         ...data,
         body: data.body.substring(0, 116) + "...",
       };
     },
-  });
+  }));
 
   return (
     <div class="relative">
